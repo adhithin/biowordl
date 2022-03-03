@@ -100,7 +100,7 @@ function Game(props: GameProps) {
   const [hint, setHint] = useState<string>(
     challengeError
       ? `Invalid challenge string, playing random game.`
-      : `Make your first guess!`
+      : `Make your first guess! Here's a hint of bio words: https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/plant-biology`
   );
   const currentSeedParams = () =>
     `?seed=${seed}&length=${wordLength}&game=${gameNumber}`;
@@ -202,10 +202,10 @@ function Game(props: GameProps) {
         setHint(gameOver("won"));
         setGameState(GameState.Won);
       } else if (guesses.length + 1 === props.maxGuesses) {
-        setHint(gameOver("lost"));
+        setHint(gameOver("lost,good try"));
         setGameState(GameState.Lost);
       } else {
-        setHint("");
+        setHint("https://elifesciences.org/subjects/plant-biology");
         speak(describeClue(clue(currentGuess, target)));
       }
     }
